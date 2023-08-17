@@ -37,3 +37,6 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
+app.use("/", express.static("./frontend"));
+app.get("/*", (req,res)=> res.sendFile("/frontend/index.html", {root: process.env.PWD}));
+
