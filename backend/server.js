@@ -6,7 +6,6 @@ import morgan from "morgan";
 import connectDB from "./config/db.js";
 import  transactionRouter from "./routes/transactions.js"
 import userRouter from "./routes/userRoutes.js";
-import UserModel from "./models/UserModel.js";
 import cors from "cors";
 
 
@@ -25,7 +24,8 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 app.use("/api/v1/", transactionRouter); 
-app.use(userRouter); 
+app.use("/api/v1/", userRouter); 
+
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
