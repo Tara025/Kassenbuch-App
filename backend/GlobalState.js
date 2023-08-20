@@ -19,7 +19,7 @@ export const GlobalProvider = ({ children }) => {
   // Actions
   async function getTransactions() {
     try {
-      const res = await axios.get('https://api.render.com/deploy/srv-cjf5rrme546c739bos6g?key=cxvu0__TOZ0:5002/api/v1/transactions'); //render.com (für Backend) Verbindung HIER
+      const res = await axios.get('https://kassenbuch.onrender.com:5002/api/v1/transactions'); //render.com (für Backend) Verbindung HIER
 
       dispatch({
         type: 'GET_TRANSACTIONS',
@@ -35,7 +35,7 @@ export const GlobalProvider = ({ children }) => {
 
   async function deleteTransaction(id) {
     try {
-      await axios.delete(`https://api.render.com/deploy/srv-cjf5rrme546c739bos6g?key=cxvu0__TOZ0:5002/api/v1/transactions/${id}`);
+      await axios.delete(`https://kassenbuch.onrender.com:5002/api/v1/transactions/${id}`);
 
       dispatch({
         type: 'DELETE_TRANSACTION',
@@ -57,7 +57,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.post('https://api.render.com/deploy/srv-cjf5rrme546c739bos6g?key=cxvu0__TOZ0:5002/api/v1/transactions', transaction, config);
+      const res = await axios.post('https://kassenbuch.onrender.com:5002/api/v1/transactions', transaction, config);
 
       dispatch({
         type: 'ADD_TRANSACTION',
