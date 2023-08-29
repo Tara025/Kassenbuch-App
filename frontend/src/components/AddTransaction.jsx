@@ -3,14 +3,12 @@ import { GlobalContext } from "../context/GlobalState.jsx";
 
 export const AddTransaction = () => {
   const [text, setText] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
 
   const { addTransaction } = useContext(GlobalContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    //ab hier wird die eingegebene zahl überprüft
 
     const parsedAmount = parseFloat(+amount);
 
@@ -19,14 +17,19 @@ export const AddTransaction = () => {
       return;
     }
 
-    if (parsedAmount > 1000000) {
+    if (parsedAmount > 100000000) {
       alert("Der eingegebene Betrag ist zu hoch.");
+      return;
+    }
+
+    if (text.trim() === "" || amount === "") {
+      alert("Betrag oder Text fehlen noch.");
       return;
     }
 
     const newTransaction = {
       text,
-      amount: parsedAmount, //+amount
+      amount: parsedAmount, 
     };
 
     addTransaction(newTransaction);
@@ -34,20 +37,16 @@ export const AddTransaction = () => {
     setAmount("");
   };
 
-  //textfeld wird überprüft
-  // const handleTextChange = (e) => {
-  //   const sanitizedText = e.target.value.replace(/[<>]/g, "");
-  //   setText(sanitizedText);
-  // };
- 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "text") {
-      const sanitizedText = value.replace(/[<>]/g, "")
+    if (name === "text" && value.length <= 30) {
+      const sanitizedText = value.replace(/[<>]/g, "");
       setText(sanitizedText);
-    } else if (name === "amount" && (value === "" || /^\d{1,7}$/.test(value))) {
-      setAmount(value);
+    } else if (name === "amount") {
+      if (/^-?\d{0,8}$/.test(value)) {
+        setAmount(value);
+      }
     }
   };
 
@@ -61,7 +60,8 @@ export const AddTransaction = () => {
             type="text"
             name="text"
             value={text}
-            onChange={handleInputChange} //(e) => setText(e.target.value)
+            onChange={handleInputChange}
+            maxLength={30}
             placeholder="Text einfügen..."
           />
         </div>
@@ -74,8 +74,7 @@ export const AddTransaction = () => {
             type="number"
             name="amount"
             value={amount}
-            onChange={handleInputChange} //(e) => setAmount(e.target.value)
-            // maxLength={3}
+            onChange={handleInputChange}
             placeholder="Betrag eingeben..."
           />
         </div>
