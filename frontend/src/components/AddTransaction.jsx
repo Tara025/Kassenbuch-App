@@ -43,7 +43,7 @@ export const AddTransaction = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "text" && value.length <= 50) {
+    if (name === "text") {
       const sanitizedText = value.replace(/[<>]/g, "");
       setText(sanitizedText);
     } else if (name === "amount" && (value === "" || /^\d{1,3}$/.test(value))) {
@@ -59,6 +59,7 @@ export const AddTransaction = () => {
           <label htmlFor="text">Text</label>
           <input
             type="text"
+            name="text"
             value={text}
             onChange={handleInputChange} //(e) => setText(e.target.value)
             placeholder="Text einfügen..."
@@ -71,9 +72,10 @@ export const AddTransaction = () => {
           </label>
           <input
             type="number"
+            name="amount"
             value={amount}
             onChange={handleInputChange} //(e) => setAmount(e.target.value)
-            maxLength={30}
+            // maxLength={3}
             placeholder="Betrag eingeben..."
           />
         </div>
