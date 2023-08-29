@@ -44,9 +44,9 @@ export const AddTransaction = () => {
     const { name, value } = e.target;
 
     if (name === "text") {
-      const sanitizedText = value.replace(/[<>]/g, "");
+      const sanitizedText = value.replace(/[<>]/g, "")
       setText(sanitizedText);
-    } else if (name === "amount" && (value === "" || /^\d{1,3}$/.test(value))) {
+    } else if (name === "amount" && (value === "" || /^\d{1,7}$/.test(value))) {
       setAmount(value);
     }
   };
