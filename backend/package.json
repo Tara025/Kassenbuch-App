@@ -1,25 +1,26 @@
 {
    "main": "server.js",
-  "type": "module",
-  "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "author": "Peggy",
-  "license": "MIT",
-  "dependencies": {
-    "colors": "^1.4.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-mongo-login": "^1.1.5",
-    "mongoose": "^5.13.19",
-    "morgan": "^1.9.1",
-    "vercel": "^31.0.1"
-  },
-  "devDependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2"
-  }
+   "type": "module",
+   "scripts": {
+      "start": "node server.js",
+      "server": "nodemon server",
+      "client": "npm start --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+   },
+   "author": "Peggy",
+   "license": "MIT",
+   "dependencies": {
+      "colors": "^1.4.0",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "express-mongo-login": "^1.1.5",
+      "mongoose": "^5.13.19",
+      "morgan": "^1.9.1",
+      "node": "^22.4.0",
+      "vercel": "^34.3.0"
+   },
+   "devDependencies": {
+      "concurrently": "^5.1.0",
+      "nodemon": "^2.0.2"
+   }
 }
